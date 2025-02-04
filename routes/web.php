@@ -18,4 +18,11 @@ Route::group(['namespace' => "App\Http\Controllers\Blog"], function () {
     Route::get("/", IndexController::class);
 });
 
+Route::group(['namespace'=>'App\Http\Controllers\Admin', 'prefix' => 'adm'], function() {
+    Route::get('/', 'IndexController' )->name('admin.index');
+    Route::group(['namespace'=>'Post'], function(){
+        Route::get('/posts', 'IndexController' )->name('admin.post.index');
+    });
+});
+
 Auth::routes();
