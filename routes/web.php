@@ -20,8 +20,14 @@ Route::group(['namespace' => "App\Http\Controllers\Blog"], function () {
 
 Route::group(['namespace'=>'App\Http\Controllers\Admin', 'prefix' => 'adm'], function() {
     Route::get('/', 'IndexController' )->name('admin.index');
-    Route::group(['namespace'=>'Post'], function(){
-        Route::get('/posts', 'IndexController' )->name('admin.post.index');
+    Route::group(['namespace'=>'Post', 'prefix' => 'posts'], function(){
+        Route::get('/', 'IndexController' )->name('admin.post.index');
+    });
+    Route::group(['namespace'=>'Category', 'prefix' => 'categories'], function(){
+        Route::get('/', 'IndexController' )->name('admin.category.index');
+    });
+    Route::group(['namespace'=>'Tag', 'prefix' => 'tags'], function(){
+        Route::get('/', 'IndexController' )->name('admin.tag.index');
     });
 });
 

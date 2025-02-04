@@ -29,7 +29,7 @@
             >
                 <li class="nav-item">
                     <a href="{{ route('admin.category.index') }}" class="nav-link active">
-                        <i class="nav-icon bi bi-newspaper"></i>
+                        <i class="nav-icon bi bi-folder"></i>
                         <p>
                             Категории <span class="nav-badge badge text-bg-secondary me-3">0</span>
                         </p>
@@ -37,7 +37,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('admin.tag.index') }}" class="nav-link active">
-                        <i class="nav-icon bi bi-newspaper"></i>
+                        <i class="nav-icon bi bi-tags"></i>
                         <p>
                             Теги <span class="nav-badge badge text-bg-secondary me-3">0</span>
                         </p>
