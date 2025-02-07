@@ -15,11 +15,44 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['namespace' => "App\Http\Controllers\Blog"], function () {
-    Route::get("/", IndexController::class);
+    Route::get("/", IndexController::class)->name('main.index');
 });
 
-Route::group(['namespace'=>'App\Http\Controllers\Admin', 'prefix' => 'adm'], function() {
+Route::group(['namespace' => "App\Http\Controllers\Post", 'prefix' => 'posts'], function () {
+    Route::get("/", IndexController::class)->name('post.index');
+    Route::get("/{post}", ShowController::class)->name('post.show');
+});
+
+Route::group(['namespace'=>'App\Http\Controllers\Personal', 'prefix' => 'personal', 'middleware' => ['auth', 'admin', 'verified']], function(){
+
+    Route::group(['namespace'=>'Main'], function(){
+        Route::get('/', 'IndexController' )->name('personal.main.index');
+    });
+    Route::group(['namespace'=>'Post', 'prefix' => 'posts'], function(){
+        Route::get('/', 'IndexController' )->name('personal.post.index');
+        Route::delete('/{post}', 'DeleteController' )->name('personal.post.delete');
+    });
+    Route::group(['namespace'=>'Comment', 'prefix' => 'comments'], function(){
+        Route::get('/', 'IndexController' )->name('personal.comment.index');
+        Route::get('/{comment}/edit', 'EditController' )->name('personal.comment.edit');
+        Route::patch('/{comment}', 'UpdateController' )->name('personal.comment.update');
+        Route::delete('/{comment}', 'DeleteController' )->name('personal.comment.delete');
+    });
+});
+
+Route::group(['namespace'=>'App\Http\Controllers\Admin', 'prefix' => 'adm', 'middleware' => ['auth', 'admin', 'verified']], function() {
     Route::get('/', 'IndexController' )->name('admin.index');
+
+    Route::group(['namespace'=>'User', 'prefix' => 'users'], function(){
+        Route::get('/', 'IndexController' )->name('admin.user.index');
+        Route::get('/create', 'CreateController' )->name('admin.user.create');
+        Route::post('/store', 'StoreController' )->name('admin.user.store');
+        Route::get('/{user}', 'ShowController' )->name('admin.user.show');
+        Route::get('/{user}/edit', 'EditController' )->name('admin.user.edit');
+        Route::patch('/{user}', 'UpdateController' )->name('admin.user.update');
+        Route::delete('/{user}', 'DeleteController' )->name('admin.user.delete');
+    });
+
     Route::group(['namespace'=>'Category', 'prefix' => 'categories'], function(){
         Route::get('/', 'IndexController' )->name('admin.category.index');
         Route::get('/create', 'CreateController' )->name('admin.category.create');
@@ -49,4 +82,4 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin', 'prefix' => 'adm'], fun
     });
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);

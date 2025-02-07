@@ -28,6 +28,22 @@
                 data-accordion="false"
             >
                 <li class="nav-item">
+                    <a href="{{ route('admin.index') }}" class="nav-link active">
+                        <i class="nav-icon bi bi-house-fill"></i>
+                        <p>
+                            Главная
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.user.index') }}" class="nav-link active">
+                        <i class="nav-icon bi bi-person-badge"></i>
+                        <p>
+                            Пользователи <span class="nav-badge badge text-bg-secondary me-3">0</span>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('admin.category.index') }}" class="nav-link active">
                         <i class="nav-icon bi bi-folder"></i>
                         <p>

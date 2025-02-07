@@ -23,50 +23,21 @@
         <!-- WIDGET -->
         <div class="widget latest-posts-widget">
             <h2 class="widget-title">
-                Свежие публикации <span class="hor-center main-color-bg"></span>
+                Популярные посты <span class="hor-center main-color-bg"></span>
             </h2>
             <div class="widget-content">
                 <ul class="ws-post-list">
-
+                    @foreach($popular as $ppost)
                     <li class="main-color">
-                        <a href="#" class="post-sm-thmb">
-                            <img src="http://phydev.web44.net/erizo/img/blog-2.jpg" alt="thumbnails-2">
+                        <a href="{{ route("post.show", $ppost->id) }}" class="post-sm-thmb">
+                            <img src="{{ 'storage/' . $ppost->image_preview }}" alt="thumbnails-2">
                         </a>
                         <div class="post-thumb-det">
-                            <a href="#" class="effect">Creativo y profesional</a>
+                            <a href="{{ route("post.show", $ppost->id) }}" class="effect">{{ $ppost->title }}</a>
                             <span><time datetime="2018-08-08">Aout 08, 2018</time></span>
                         </div>
                     </li>
-
-                    <li class="main-color">
-                        <a href="#" class="post-sm-thmb">
-                            <img src="http://phydev.web44.net/erizo/img/blog-1.jpg" alt="thumbnails-2">
-                        </a>
-                        <div class="post-thumb-det">
-                            <a href="#" class="effect">General blog post</a>
-                            <span><time datetime="2018-07-23">July 23, 2018</time></span>
-                        </div>
-                    </li>
-
-                    <li class="main-color">
-                        <a href="#" class="post-sm-thmb">
-                            <img src="http://phydev.web44.net/azaro/img/blogs/blog-1.jpg" alt="thumbnails-2">
-                        </a>
-                        <div class="post-thumb-det">
-                            <a href="#" class="effect">Perfectly on furnityre</a>
-                            <span><time datetime="2018-06-12">June 12, 2018</time></span>
-                        </div>
-                    </li>
-
-                    <li class="main-color">
-                        <a href="#" class="post-sm-thmb">
-                            <img src="http://phydev.web44.net/erizo/img/blog-3.jpg" alt="thumbnails-2">
-                        </a>
-                        <div class="post-thumb-det">
-                            <a href="#" class="effect">Suiza es impresionante</a>
-                            <span><time datetime="2017-10-24">May 04, 2018</time></span>
-                        </div>
-                    </li>
+                    @endforeach
                 </ul>
             </div>
         </div>

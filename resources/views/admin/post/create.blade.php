@@ -30,7 +30,7 @@
                     <label for="title" class="form-label">Наименование</label>
                     <input type="text" class="form-control" name="title" id="title" aria-describedby="titleHelp">
                     @error('title')
-                        <div class="text-danger">Это поле обязательно для заполнения!</div>
+                        <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="mb-3">
@@ -50,7 +50,7 @@
                         @endforeach
                     </select>
                     @error('category_id')
-                        <div class="text-danger">Это поле обязательно для заполнения!</div>
+                        <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="mb-3">
@@ -62,14 +62,23 @@
                                 value="{{ $tag->id }}">{{ $tag->title }}</option>
                         @endforeach
                     </select>
+                    @error('tag_ids')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="input-group mb-3">
                     <input type="file" name="image_preview" class="form-control" id="image_preview">
                     <label class="input-group-text" for="image_preview">Превью поста</label>
+                    @error('image_preview')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="input-group mb-3">
-                    <input type="file" name="image" class="form-control" id="preview_image">
+                    <input type="file" name="image" class="form-control" id="image">
                     <label class="input-group-text" for="image">Изображение поста</label>
+                    @error('image')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="content" class="form-label">Контент</label>

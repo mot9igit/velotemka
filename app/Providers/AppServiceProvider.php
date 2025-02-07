@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -23,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-        Paginator::defaultView('vendor.pagination.bootstrap-5');
+        Carbon::setLocale("ru_RU");
+        Paginator::defaultView('vendor.pagination.simple');
     }
 }
